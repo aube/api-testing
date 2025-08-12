@@ -10,7 +10,7 @@ import pageDELETE from './pageDELETE.js'
 
 
 const TestData = {
-  authToken: "global.authToken",
+  authToken: "",
 
   DEFAULT_PAGE: {
     id: 0,
@@ -49,6 +49,6 @@ describe('External Page Server API', () => {
 
   describe('GET /pages',pagesGET(TestData));
 
-  describe('DELETE /upload', pageDELETE(TestData));
+  describe('DELETE /page', pageDELETE(TestData));
 
 });

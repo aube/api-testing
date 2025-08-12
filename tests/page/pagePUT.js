@@ -26,23 +26,7 @@ export default function (TestData) {
     });
 
     it('should update page and return updated page data', async () => {
-      const response = await request(API_BASE_URL)
-        .put('/page')
-        .set('Authorization', `Bearer ${TestData.authToken}`)
-        .send({
-          ...updatedPage,
-          name: TestData.FAKE_NAME + '_2',
-          meta: "meta_2",
-          title: "title_2",
-          category: "category_2",
-          template: "template_2",
-          h1: "h1_2",
-          content: "content_2",
-          content_short: "content_short_2",
-        })
-        .expect(200);
-
-      toEqualSentData(expect, response.body, {
+      const pageData = {
         ...updatedPage,
         name: TestData.FAKE_NAME + '_2',
         meta: "meta_2",
@@ -52,7 +36,15 @@ export default function (TestData) {
         h1: "h1_2",
         content: "content_2",
         content_short: "content_short_2",
-      })
+      }
+
+      const response = await request(API_BASE_URL)
+        .put('/page')
+        .set('Authorization', `Bearer ${TestData.authToken}`)
+        .send(pageData)
+        .expect(200);
+
+      toEqualSentData(expect, response.body, pageData)
     });
 
     it('should return 400 when page ID is not exists', async () => {
