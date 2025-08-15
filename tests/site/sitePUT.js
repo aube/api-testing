@@ -25,6 +25,8 @@ export default function (TestData) {
       const response = await request(API_BASE_URL)
         .put('/site')
         .set('Authorization', `Bearer ${TestData.authToken}`)
+        .set('Origin', `${TestData.origin}`)
+        .set('x-site-id', `${updatedSite.id}`)
         .send(updatedSite)
         .expect(200);
 
@@ -35,6 +37,8 @@ export default function (TestData) {
       await request(API_BASE_URL)
         .put('/site')
         .set('Authorization', `Bearer ${TestData.authToken}`)
+        .set('Origin', `${TestData.origin}`)
+        .set('x-site-id', `${updatedSite.id}`)
         .send({
           ...updatedSite,
           id: updatedSite.id + 1000,
@@ -46,6 +50,8 @@ export default function (TestData) {
       await request(API_BASE_URL)
         .put('/site')
         .set('Authorization', `Bearer ${TestData.authToken}`)
+        .set('Origin', `${TestData.origin}`)
+        .set('x-site-id', `${updatedSite.id}`)
         .send({
           ...updatedSite,
           name: null,
@@ -57,6 +63,8 @@ export default function (TestData) {
       await request(API_BASE_URL)
         .put('/site')
         .set('Authorization', `Bearer ${TestData.authToken}`)
+        .set('Origin', `${TestData.origin}`)
+        .set('x-site-id', `${updatedSite.id}`)
         .send({
           ...updatedSite,
           name: TestData.createdSite2.name,

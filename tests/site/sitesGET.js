@@ -7,6 +7,7 @@ export default function (TestData) {
       const response = await request(API_BASE_URL)
         .get('/sites')
         .set('Authorization', `Bearer ${TestData.authToken}`)
+        .set('Origin', `${TestData.origin}`)
         .expect(200);
 
       expect(response.body).toHaveProperty('rows');
@@ -17,6 +18,7 @@ export default function (TestData) {
     it('should return 401 if user unautorized', async () => {
       await request(API_BASE_URL)
         .get('/sites')
+        .set('Origin', `${TestData.origin}`)
         .expect(401);
     });
   }

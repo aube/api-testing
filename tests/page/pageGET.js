@@ -8,6 +8,8 @@ export default function (TestData) {
       const response = await request(API_BASE_URL)
         .get(`/page?id=${TestData.createdPage.id}`)
         .set('Authorization', `Bearer ${TestData.authToken}`)
+        .set('Origin', `${TestData.origin}`)
+        .set('x-site-id', TestData.createdSite.id)
         .expect(200);
 
 
@@ -21,6 +23,8 @@ export default function (TestData) {
       const response = await request(API_BASE_URL)
         .get(`/page?name=${TestData.createdPage.name}`)
         .set('Authorization', `Bearer ${TestData.authToken}`)
+        .set('Origin', `${TestData.origin}`)
+        .set('x-site-id', TestData.createdSite.id)
         .expect(200);
 
       toEqualSentData(expect, response.body, {
@@ -33,6 +37,8 @@ export default function (TestData) {
       await request(API_BASE_URL)
         .get(`/page?name=${TestData.createdPage.name}_fake`)
         .set('Authorization', `Bearer ${TestData.authToken}`)
+        .set('Origin', `${TestData.origin}`)
+        .set('x-site-id', TestData.createdSite.id)
         .expect(404);
     });
 
@@ -40,6 +46,8 @@ export default function (TestData) {
       await request(API_BASE_URL)
         .get('/page')
         .set('Authorization', `Bearer ${TestData.authToken}`)
+        .set('Origin', `${TestData.origin}`)
+        .set('x-site-id', TestData.createdSite.id)
         .expect(400);
     });
   }

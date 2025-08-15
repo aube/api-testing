@@ -5,9 +5,12 @@ import { toEqualSentData } from '../../helpers/checkBody.js';
 export default function (TestData) {
   return () => {
     it('should create page and return new page data', async () => {
+
       const response = await request(API_BASE_URL)
         .post('/page')
         .set('Authorization', `Bearer ${TestData.authToken}`)
+        .set('Origin', `${TestData.origin}`)
+        .set('x-site-id', `${TestData.createdSite.id}`)
         .send({ ...TestData.DEFAULT_PAGE })
         .expect(201);
 
@@ -23,6 +26,8 @@ export default function (TestData) {
       await request(API_BASE_URL)
         .post('/page')
         .set('Authorization', `Bearer ${TestData.authToken}`)
+        .set('Origin', `${TestData.origin}`)
+        .set('x-site-id', `${TestData.createdSite.id}`)
         .send({ ...TestData.DEFAULT_PAGE })
         .expect(400);
     });

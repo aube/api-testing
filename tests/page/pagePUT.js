@@ -19,6 +19,8 @@ export default function (TestData) {
       const response = await request(API_BASE_URL)
         .post('/page')
         .set('Authorization', `Bearer ${TestData.authToken}`)
+        .set('Origin', `${TestData.origin}`)
+        .set('x-site-id', TestData.createdSite.id)
         .send({ ...updatedPage });
 
       updatedPage = response.body
@@ -41,6 +43,8 @@ export default function (TestData) {
       const response = await request(API_BASE_URL)
         .put('/page')
         .set('Authorization', `Bearer ${TestData.authToken}`)
+        .set('Origin', `${TestData.origin}`)
+        .set('x-site-id', TestData.createdSite.id)
         .send(pageData)
         .expect(200);
 
@@ -51,6 +55,8 @@ export default function (TestData) {
       await request(API_BASE_URL)
         .put('/page')
         .set('Authorization', `Bearer ${TestData.authToken}`)
+        .set('Origin', `${TestData.origin}`)
+        .set('x-site-id', TestData.createdSite.id)
         .send({
           ...updatedPage,
           id: updatedPage.id + 1000,
@@ -62,6 +68,8 @@ export default function (TestData) {
       await request(API_BASE_URL)
         .put('/page')
         .set('Authorization', `Bearer ${TestData.authToken}`)
+        .set('Origin', `${TestData.origin}`)
+        .set('x-site-id', TestData.createdSite.id)
         .send({
           ...updatedPage,
           id: null,
@@ -73,6 +81,8 @@ export default function (TestData) {
       await request(API_BASE_URL)
         .put('/page')
         .set('Authorization', `Bearer ${TestData.authToken}`)
+        .set('Origin', `${TestData.origin}`)
+        .set('x-site-id', TestData.createdSite.id)
         .send({
           ...updatedPage,
           name: TestData.DEFAULT_PAGE.name,

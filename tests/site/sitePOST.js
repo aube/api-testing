@@ -8,6 +8,7 @@ export default function (TestData) {
       const response = await request(API_BASE_URL)
         .post('/site')
         .set('Authorization', `Bearer ${TestData.authToken}`)
+        .set('Origin', `${TestData.origin}`)
         .send({ ...TestData.DEFAULT_SITE })
         .expect(201);
 
@@ -23,6 +24,7 @@ export default function (TestData) {
       await request(API_BASE_URL)
         .post('/site')
         .set('Authorization', `Bearer ${TestData.authToken}`)
+        .set('Origin', `${TestData.origin}`)
         .send({ ...TestData.DEFAULT_PAGE })
         .expect(400);
     });
@@ -30,6 +32,7 @@ export default function (TestData) {
     it('should return 401 when user is unauthorized', async () => {
       await request(API_BASE_URL)
         .post('/site')
+        .set('Origin', `${TestData.origin}`)
         .send({ ...TestData.DEFAULT_PAGE })
         .expect(401);
     });

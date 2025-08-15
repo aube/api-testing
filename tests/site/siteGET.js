@@ -7,6 +7,7 @@ export default function (TestData) {
     it('should get site by Domain', async () => {
       const response = await request(API_BASE_URL)
         .get(`/site?domain=${TestData.createdSite.domain}`)
+        .set('Origin', `${TestData.origin}`)
         .expect(200);
 
       toEqualSentData(expect, response.body, {
@@ -18,6 +19,7 @@ export default function (TestData) {
     it('should get site by Name', async () => {
       const response = await request(API_BASE_URL)
         .get(`/site/${TestData.createdSite.name}`)
+        .set('Origin', `${TestData.origin}`)
         .expect(200);
 
       toEqualSentData(expect, response.body, {
@@ -29,18 +31,21 @@ export default function (TestData) {
     it('should return 404 if Domain not found', async () => {
       await request(API_BASE_URL)
         .get(`/site?domain=${TestData.createdSite.domain}_fake`)
+        .set('Origin', `${TestData.origin}`)
         .expect(404);
     });
 
     it('should return 404 if Domain not found', async () => {
       await request(API_BASE_URL)
         .get(`/site?domain=${TestData.createdSite.domain}_fake`)
+        .set('Origin', `${TestData.origin}`)
         .expect(404);
     });
 
     it('should return 400 if Domain and Name is missing', async () => {
       await request(API_BASE_URL)
         .get('/site')
+        .set('Origin', `${TestData.origin}`)
         .expect(400);
     });
   }

@@ -1,6 +1,3 @@
-import request from 'supertest';
-import { API_BASE_URL } from '../config.js';
-import { getToken } from '../../helpers/user.js';
 import { faker } from '@faker-js/faker';
 import sitePOST from './sitePOST.js'
 import siteGET from './siteGET.js'
@@ -10,11 +7,12 @@ import siteDELETE from './siteDELETE.js'
 
 
 const TestData = {
-  authToken: "",
-  createdSite: null,
+  origin: "localhost",
+  authToken: globalThis.user1.getToken(),
+  createdSite: globalThis.site1.getData(),
 
-  authToken2: "",
-  createdSite2: null,
+  authToken2: globalThis.user2.getToken(),
+  createdSite2: globalThis.site2.getData(),
 
   DEFAULT_SITE: {
     id: 0,
@@ -30,29 +28,9 @@ const TestData = {
   FAKE_NAME: "qa-" + faker.internet.domainWord(),
 }
 
-
 describe('External Page Server API', () => {
-  beforeAll(async () => {
-    TestData.authToken = await getToken()
-    TestData.authToken2 = await getToken()
-
-    const response = await request(API_BASE_URL)
-      .post('/site')
-      .set('Authorization', `Bearer ${TestData.authToken2}`)
-      .send({
-        ...TestData.DEFAULT_SITE,
-        name: "qa-" + faker.internet.domainWord(),
-        domain: "qa-" + faker.internet.domainName(),
-      });
-
-    TestData.createdSite2 = response.body;
-  });
-
-  afterAll(async () => {
-    // await request(API_BASE_URL)
-    //   .delete('/site?force=1&id=' + TestData.createdSite.id)
-    //   .set('Authorization', `Bearer ${TestData.authToken}`);
-  });
+  // beforeAll(async () => {});
+  // afterAll(async () => {});
 
   describe('POST /site', sitePOST(TestData));
 

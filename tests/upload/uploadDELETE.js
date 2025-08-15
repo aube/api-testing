@@ -4,31 +4,30 @@ import { API_BASE_URL } from '../config.js';
 export default function (TestData) {
   return () => {
 
-    it('should delete a page by ID', async () => {
+    it('should delete a file by ID', async () => {
       await request(API_BASE_URL)
-        .delete('/page?id=' + TestData.createdPage.id)
+        .delete(`/upload?uuid=${TestData.uploadedFile.uuid}`)
         .set('Authorization', `Bearer ${TestData.authToken}`)
         .set('Origin', `${TestData.origin}`)
-        .set('x-site-id', TestData.createdSite.id)
-        .expect(200);
+        .set('x-site-id', `${TestData.createdSite.id}`)
+        .expect(204);
 
-      // Проверяем, что действительно удален
+      // Проверяем, что файл действительно удален
       await request(API_BASE_URL)
-        .get('/page?id=' + TestData.createdPage.id)
+        .get(`/upload?uuid=${TestData.uploadedFile.uuid}`)
         .set('Authorization', `Bearer ${TestData.authToken}`)
         .set('Origin', `${TestData.origin}`)
-        .set('x-site-id', TestData.createdSite.id)
+        .set('x-site-id', `${TestData.createdSite.id}`)
         .expect(404);
     });
 
-    it('should return 404 if page not found', async () => {
+    it('should return 404 if file not found', async () => {
       await request(API_BASE_URL)
-        .get('/page?id=' + TestData.createdPage.id)
+        .delete(`/upload?uuid=${TestData.FAKE_UUID}`)
         .set('Authorization', `Bearer ${TestData.authToken}`)
         .set('Origin', `${TestData.origin}`)
-        .set('x-site-id', TestData.createdSite.id)
+        .set('x-site-id', `${TestData.createdSite.id}`)
         .expect(404);
     });
-  }
+  };
 }
-

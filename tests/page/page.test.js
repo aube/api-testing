@@ -1,6 +1,6 @@
 import request from 'supertest';
 import { API_BASE_URL } from '../config.js';
-import { getToken } from '../../helpers/user.js';
+// import { getToken } from '../../helpers/user.js';
 import { faker } from '@faker-js/faker';
 import pagePOST from './pagePOST.js'
 import pageGET from './pageGET.js'
@@ -10,7 +10,11 @@ import pageDELETE from './pageDELETE.js'
 
 
 const TestData = {
-  authToken: "",
+
+  authToken: globalThis.user1.getToken(),
+  createdSite: globalThis.site1.getData(),
+  origin: "localhost",
+  createdPage: null,
 
   DEFAULT_PAGE: {
     id: 0,
@@ -25,15 +29,11 @@ const TestData = {
   },
 
   FAKE_NAME: "qa_" + faker.internet.domainWord(),
-
-  createdPage: null,
 }
 
 
 describe('External Page Server API', () => {
-  beforeAll(async () => {
-    TestData.authToken = await getToken()
-  });
+  // beforeAll(async () => { });
 
   afterAll(async () => {
     await request(API_BASE_URL)
