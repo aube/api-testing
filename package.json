@@ -1,5 +1,5 @@
 {
-  "name": "api-testing",
+  "name": "pstest",
   "version": "0.0.1",
   "type": "module",
   "description": "experemental app for testing external API",

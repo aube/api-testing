@@ -18,14 +18,19 @@ const TestData = {
 
   DEFAULT_PAGE: {
     id: 0,
+    parent_id: 0,
     name: "name",
     meta: "meta",
     title: "title",
     category: "category",
     template: "template",
+    template_anons: "template_anons",
     h1: "h1",
+    icon: "icon",
+    menu: "menu",
+    image_id: 6,
     content: "content",
-    content_short: "content_short",
+    anons: "anons",
   },
 
   FAKE_NAME: "qa_" + faker.internet.domainWord(),
