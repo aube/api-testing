@@ -7,6 +7,8 @@ import pageGET from './pageGET.js'
 import pagesGET from './pagesGET.js'
 import pagePUT from './pagePUT.js'
 import pageDELETE from './pageDELETE.js'
+import pageAncestorsGET from './pageAncestorsGET.js'
+import pageChildrenGET from './pageChildrenGET.js'
 
 
 const TestData = {
@@ -55,5 +57,9 @@ describe('External Page Server API', () => {
   describe('GET /pages',pagesGET(TestData));
 
   describe('DELETE /page', pageDELETE(TestData));
+
+  describe('GET /page/ancestors', pageAncestorsGET(TestData));
+
+  describe('GET /page/children', pageChildrenGET(TestData));
 
 });
