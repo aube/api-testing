@@ -100,7 +100,7 @@ export default function (TestData) {
       // Create another page to use as parent
       const parentPageData = {
         ...TestData.DEFAULT_PAGE,
-        name: TestData.FAKE_NAME + '_parent',
+        name: TestData.FAKE_NAME + '_parent2',
       };
 
       const parentResponse = await request(API_BASE_URL)

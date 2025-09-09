@@ -56,10 +56,9 @@ describe('External Page Server API', () => {
 
   describe('GET /pages',pagesGET(TestData));
 
-  describe('DELETE /page', pageDELETE(TestData));
-
   describe('GET /page/ancestors', pageAncestorsGET(TestData));
 
   describe('GET /page/children', pageChildrenGET(TestData));
 
+  describe('DELETE /page', pageDELETE(TestData));
 });
