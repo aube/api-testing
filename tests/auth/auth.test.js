@@ -1,9 +1,17 @@
 import request from 'supertest';
+import crypto from 'crypto';
+import { faker } from '@faker-js/faker';
 import { API_BASE_URL } from '../config.js';
-import { getUser } from '../../helpers/user.js';
 
 describe('Auth flow', () => {
-  let User = getUser()
+
+  const testId = crypto.randomBytes(2).toString('hex');
+  const User = {
+    email: `test_${testId}_${faker.number.int(1000)}@domain.com`,
+    password: `${faker.internet.password({ length: 10 })}A1!`,
+    username: `QA_${faker.person.firstName()}_${testId}`,
+  }
+
   let authToken;
 
   describe('POST /api/v1/register', () => {
