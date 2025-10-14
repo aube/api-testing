@@ -17,9 +17,11 @@ const TestData = {
   DEFAULT_TEMPLATE: {
     id: 0,
     name: "name",
+    title: "title",
+    description: "description",
     html: "html",
-    json: "json",
     css: "css",
+    json: "json",
     js: "js",
   },
 

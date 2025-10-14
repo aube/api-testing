@@ -25,7 +25,7 @@ export default function templateGET(TestData) {
         .set('Authorization', `Bearer ${TestData.authToken}`)
         .set('Origin', `${TestData.origin}`)
         .set('x-site-uuid', TestData.createdSite.uuid)
-        .expect(401);
+        .expect(400);
     });
 
     it('should fail to get a template without authentication', async () => {
