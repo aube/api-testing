@@ -15,7 +15,7 @@ const TestData = {
   createdSite2: globalThis.site2.getData(),
 
   DEFAULT_SITE: {
-    id: 0,
+    uuid: '',
     name: "qa-" + faker.internet.domainWord(),
     domain: "qa-" + faker.internet.domainName(),
     meta: "meta",

@@ -16,7 +16,7 @@ export default function (TestData) {
 
       toEqualSentData(expect, response.body, {
         ...TestData.DEFAULT_SITE,
-        id: TestData.createdSite.id,
+        uuid: TestData.createdSite.uuid,
       })
     });
 

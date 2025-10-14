@@ -10,7 +10,7 @@ export default function templatePOST(TestData) {
         .post('/template')
         .set('Authorization', `Bearer ${TestData.authToken}`)
         .set('Origin', `${TestData.origin}`)
-        .set('x-site-id', TestData.createdSite.id)
+        .set('x-site-uuid', TestData.createdSite.uuid)
         .send({ ...TestData.DEFAULT_TEMPLATE })
         .expect(201);
 
@@ -27,7 +27,7 @@ export default function templatePOST(TestData) {
       await request(API_BASE_URL)
         .post('/template')
         .set('Origin', `${TestData.origin}`)
-        .set('x-site-id', TestData.createdSite.id)
+        .set('x-site-uuid', TestData.createdSite.uuid)
         .send({
           ...TestData.DEFAULT_TEMPLATE,
           name: TestData.DEFAULT_TEMPLATE.name + '_2',
@@ -40,7 +40,7 @@ export default function templatePOST(TestData) {
         .post('/template')
         .set('Origin', `${TestData.origin}`)
         .set('Authorization', `Bearer ${TestData.authToken}`)
-        .set('x-site-id', TestData.createdSite.id)
+        .set('x-site-uuid', TestData.createdSite.uuid)
         .expect(400);
     });
 
@@ -57,7 +57,7 @@ export default function templatePOST(TestData) {
         .post('/template')
         .set('Origin', 'incorrectOrigin')
         .set('Authorization', `Bearer ${TestData.authToken}`)
-        .set('x-site-id', TestData.createdSite.id)
+        .set('x-site-uuid', TestData.createdSite.uuid)
         .expect(403);
     });
   };

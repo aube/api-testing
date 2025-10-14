@@ -9,7 +9,7 @@ export default function (TestData) {
         .get(`/image?uuid=${TestData.uploadedImage.uuid}`)
         .set('Authorization', `Bearer ${TestData.authToken}`)
         .set('Origin', `${TestData.origin}`)
-        .set('x-site-id', `${TestData.createdSite.id}`)
+        .set('x-site-uuid', `${TestData.createdSite.uuid}`)
         .expect(200)
         .expect('Content-Type', TestData.uploadedImage.content_type);
 
@@ -21,7 +21,7 @@ export default function (TestData) {
         .get(`/image?name=${TestData.FILENAME}`)
         .set('Authorization', `Bearer ${TestData.authToken}`)
         .set('Origin', `${TestData.origin}`)
-        .set('x-site-id', `${TestData.createdSite.id}`)
+        .set('x-site-uuid', `${TestData.createdSite.uuid}`)
         .expect(200)
         .expect('Content-Type', TestData.uploadedImage.content_type);
 
@@ -33,7 +33,7 @@ export default function (TestData) {
         .get(`/image?uuid=${TestData.FAKE_UUID}`)
         .set('Authorization', `Bearer ${TestData.authToken}`)
         .set('Origin', `${TestData.origin}`)
-        .set('x-site-id', `${TestData.createdSite.id}`)
+        .set('x-site-uuid', `${TestData.createdSite.uuid}`)
         .expect(404);
     });
 
@@ -42,7 +42,7 @@ export default function (TestData) {
         .get('/image')
         .set('Authorization', `Bearer ${TestData.authToken}`)
         .set('Origin', `${TestData.origin}`)
-        .set('x-site-id', `${TestData.createdSite.id}`)
+        .set('x-site-uuid', `${TestData.createdSite.uuid}`)
         .expect(400);
     });
   }

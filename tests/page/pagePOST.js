@@ -10,7 +10,7 @@ export default function (TestData) {
         .post('/page')
         .set('Authorization', `Bearer ${TestData.authToken}`)
         .set('Origin', `${TestData.origin}`)
-        .set('x-site-id', `${TestData.createdSite.id}`)
+        .set('x-site-uuid', `${TestData.createdSite.uuid}`)
         .send({ ...TestData.DEFAULT_PAGE })
         .expect(201);
 
@@ -27,7 +27,7 @@ export default function (TestData) {
         .post('/page')
         .set('Authorization', `Bearer ${TestData.authToken}`)
         .set('Origin', `${TestData.origin}`)
-        .set('x-site-id', `${TestData.createdSite.id}`)
+        .set('x-site-uuid', `${TestData.createdSite.uuid}`)
         .send({ ...TestData.DEFAULT_PAGE })
         .expect(400);
     });

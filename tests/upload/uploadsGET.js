@@ -10,7 +10,7 @@ export default function (TestData) {
         .get('/uploads')
         .set('Authorization', `Bearer ${TestData.authToken}`)
         .set('Origin', `${TestData.origin}`)
-        .set('x-site-id', `${TestData.createdSite.id}`)
+        .set('x-site-uuid', `${TestData.createdSite.uuid}`)
         .expect(200);
 
       expect(response.body).toHaveProperty('rows');
@@ -24,7 +24,7 @@ export default function (TestData) {
         .get('/uploads?limit=10&offset=0')
         .set('Authorization', `Bearer ${TestData.authToken}`)
         .set('Origin', `${TestData.origin}`)
-        .set('x-site-id', `${TestData.createdSite.id}`)
+        .set('x-site-uuid', `${TestData.createdSite.uuid}`)
         .expect(200);
 
       expect(Array.isArray(response.body)).toBe(true);

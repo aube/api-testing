@@ -10,7 +10,7 @@ export default function (TestData) {
         .post('/image')
         .set('Authorization', `Bearer ${TestData.authToken}`)
         .set('Origin', `${TestData.origin}`)
-        .set('x-site-id', `${TestData.createdSite.id}`)
+        .set('x-site-uuid', `${TestData.createdSite.uuid}`)
         .attach('file', TestData.testFilePath) // 'file' - имя поля для загрузки
         .field('description', DESCRIPTION)
         .field('category', CATEGORY)

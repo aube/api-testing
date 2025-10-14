@@ -21,7 +21,7 @@ export default function templatePUT(TestData) {
         .put('/template')
         .set('Authorization', `Bearer ${TestData.authToken}`)
         .set('Origin', `${TestData.origin}`)
-        .set('x-site-id', TestData.createdSite.id)
+        .set('x-site-uuid', TestData.createdSite.uuid)
         .send({
           ...updatedTpl,
         })
@@ -40,7 +40,7 @@ export default function templatePUT(TestData) {
         .put('/template')
         .set('Authorization', `Bearer ${TestData.authToken}`)
         .set('Origin', `${TestData.origin}`)
-        .set('x-site-id', TestData.createdSite.id)
+        .set('x-site-uuid', TestData.createdSite.uuid)
         .send({
           id: TestData.createdTemplate.id ,
           name: `${TestData.FAKE_NAME}_updated_again`,
@@ -52,7 +52,7 @@ export default function templatePUT(TestData) {
       await request(API_BASE_URL)
         .put('/template')
         .set('Origin', `${TestData.origin}`)
-        .set('x-site-id', TestData.createdSite.id)
+        .set('x-site-uuid', TestData.createdSite.uuid)
         .send({
           id: TestData.createdTemplate.id,
           name: `${TestData.FAKE_NAME}_updated_again`,
@@ -65,7 +65,7 @@ export default function templatePUT(TestData) {
         .put('/template')
         .set('Authorization', `Bearer ${TestData.authToken}`)
         .set('Origin', `${TestData.origin}`)
-        .set('x-site-id', TestData.createdSite.id)
+        .set('x-site-uuid', TestData.createdSite.uuid)
         .send({
           name: `${TestData.FAKE_NAME}_updated_again`,
         })
@@ -77,7 +77,7 @@ export default function templatePUT(TestData) {
         .put('/template')
         .set('Authorization', `Bearer ${TestData.authToken}`)
         .set('Origin', `${TestData.origin}`)
-        .set('x-site-id', TestData.createdSite.id)
+        .set('x-site-uuid', TestData.createdSite.uuid)
         .send({
           ...TestData.createdTemplate,
           id: TestData.createdTemplate.id + 1000,

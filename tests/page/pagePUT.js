@@ -20,7 +20,7 @@ export default function (TestData) {
         .post('/page')
         .set('Authorization', `Bearer ${TestData.authToken}`)
         .set('Origin', `${TestData.origin}`)
-        .set('x-site-id', TestData.createdSite.id)
+        .set('x-site-uuid', TestData.createdSite.uuid)
         .send({ ...updatedPage });
 
       updatedPage = response.body
@@ -48,7 +48,7 @@ export default function (TestData) {
         .put('/page')
         .set('Authorization', `Bearer ${TestData.authToken}`)
         .set('Origin', `${TestData.origin}`)
-        .set('x-site-id', TestData.createdSite.id)
+        .set('x-site-uuid', TestData.createdSite.uuid)
         .send(pageData)
         .expect(200);
 
@@ -62,7 +62,7 @@ export default function (TestData) {
         .put('/page')
         .set('Authorization', `Bearer ${TestData.authToken}`)
         .set('Origin', `${TestData.origin}`)
-        .set('x-site-id', TestData.createdSite.id)
+        .set('x-site-uuid', TestData.createdSite.uuid)
         .send({
           ...updatedPage,
           id: updatedPage.id + 1000,
@@ -75,7 +75,7 @@ export default function (TestData) {
         .put('/page')
         .set('Authorization', `Bearer ${TestData.authToken}`)
         .set('Origin', `${TestData.origin}`)
-        .set('x-site-id', TestData.createdSite.id)
+        .set('x-site-uuid', TestData.createdSite.uuid)
         .send({
           ...updatedPage,
           id: null,
@@ -88,7 +88,7 @@ export default function (TestData) {
         .put('/page')
         .set('Authorization', `Bearer ${TestData.authToken}`)
         .set('Origin', `${TestData.origin}`)
-        .set('x-site-id', TestData.createdSite.id)
+        .set('x-site-uuid', TestData.createdSite.uuid)
         .send({
           ...updatedPage,
           name: TestData.DEFAULT_PAGE.name,
@@ -107,7 +107,7 @@ export default function (TestData) {
         .post('/page')
         .set('Authorization', `Bearer ${TestData.authToken}`)
         .set('Origin', `${TestData.origin}`)
-        .set('x-site-id', TestData.createdSite.id)
+        .set('x-site-uuid', TestData.createdSite.uuid)
         .send(parentPageData)
         .expect(201);
 
@@ -123,7 +123,7 @@ export default function (TestData) {
         .put(`/page/${updatedPage.id}/parent/${parentPage.id}`)
         .set('Authorization', `Bearer ${TestData.authToken}`)
         .set('Origin', `${TestData.origin}`)
-        .set('x-site-id', TestData.createdSite.id)
+        .set('x-site-uuid', TestData.createdSite.uuid)
         .expect(200);
 
       toEqualSentData(expect, response.body, expectedPageData);
@@ -133,7 +133,7 @@ export default function (TestData) {
         .delete('/page?id=' + parentPage.id)
         .set('Authorization', `Bearer ${TestData.authToken}`)
         .set('Origin', `${TestData.origin}`)
-        .set('x-site-id', TestData.createdSite.id)
+        .set('x-site-uuid', TestData.createdSite.uuid)
         .expect(200);
     });
 
@@ -142,7 +142,7 @@ export default function (TestData) {
         .put(`/page/${updatedPage.id}/parent/${updatedPage.id + 1000}`)
         .set('Authorization', `Bearer ${TestData.authToken}`)
         .set('Origin', `${TestData.origin}`)
-        .set('x-site-id', TestData.createdSite.id)
+        .set('x-site-uuid', TestData.createdSite.uuid)
         .expect(400);
     });
 
@@ -151,7 +151,7 @@ export default function (TestData) {
         .put(`/page/0/parent/null`)
         .set('Authorization', `Bearer ${TestData.authToken}`)
         .set('Origin', `${TestData.origin}`)
-        .set('x-site-id', TestData.createdSite.id)
+        .set('x-site-uuid', TestData.createdSite.uuid)
         .expect(400);
     });
 
@@ -160,7 +160,7 @@ export default function (TestData) {
         .put(`/page/${updatedPage.id}/parent/null`)
         .set('Authorization', `Bearer ${TestData.authToken}`)
         .set('Origin', `${TestData.origin}`)
-        .set('x-site-id', TestData.createdSite.id)
+        .set('x-site-uuid', TestData.createdSite.uuid)
         .expect(400);
     });
 
@@ -169,7 +169,7 @@ export default function (TestData) {
         .put(`/page/${updatedPage.id}/parent/${updatedPage.id}`)
         .set('Authorization', `Bearer ${TestData.authToken}`)
         .set('Origin', `${TestData.origin}`)
-        .set('x-site-id', TestData.createdSite.id)
+        .set('x-site-uuid', TestData.createdSite.uuid)
         .expect(400);
     });
   }

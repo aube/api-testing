@@ -10,7 +10,7 @@ export default function (TestData) {
     beforeAll(async () => {
       updatedSite = Object.entries(TestData.createdSite).reduce((acc, [k, v]) => {
         acc[k] = v
-        if (!['id', 'settings', 'deleted'].includes(k)) {
+        if (!['uuid', 'settings', 'deleted'].includes(k)) {
           acc[k] += '_2'
         }
         return acc
@@ -26,22 +26,22 @@ export default function (TestData) {
         .put('/site')
         .set('Authorization', `Bearer ${TestData.authToken}`)
         .set('Origin', `${TestData.origin}`)
-        .set('x-site-id', `${updatedSite.id}`)
+        .set('x-site-uuid', `${updatedSite.uuid}`)
         .send(updatedSite)
         .expect(200);
 
       toEqualSentData(expect, response.body, updatedSite)
     });
 
-    it('should return 400 when site ID is not exists', async () => {
+    it('should return 400 when site UUID is not exists', async () => {
       await request(API_BASE_URL)
         .put('/site')
         .set('Authorization', `Bearer ${TestData.authToken}`)
         .set('Origin', `${TestData.origin}`)
-        .set('x-site-id', `${updatedSite.id}`)
+        .set('x-site-uuid', `${updatedSite.uuid}`)
         .send({
           ...updatedSite,
-          id: updatedSite.id + 1000,
+          uuid: updatedSite.uuid + '1000',
         })
         .expect(400);
     });
@@ -51,7 +51,7 @@ export default function (TestData) {
         .put('/site')
         .set('Authorization', `Bearer ${TestData.authToken}`)
         .set('Origin', `${TestData.origin}`)
-        .set('x-site-id', `${updatedSite.id}`)
+        .set('x-site-uuid', `${updatedSite.uuid}`)
         .send({
           ...updatedSite,
           name: null,
@@ -64,7 +64,7 @@ export default function (TestData) {
         .put('/site')
         .set('Authorization', `Bearer ${TestData.authToken}`)
         .set('Origin', `${TestData.origin}`)
-        .set('x-site-id', `${updatedSite.id}`)
+        .set('x-site-uuid', `${updatedSite.uuid}`)
         .send({
           ...updatedSite,
           name: TestData.createdSite2.name,

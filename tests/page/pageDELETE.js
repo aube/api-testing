@@ -9,7 +9,7 @@ export default function (TestData) {
         .delete('/page?id=' + TestData.createdPage.id)
         .set('Authorization', `Bearer ${TestData.authToken}`)
         .set('Origin', `${TestData.origin}`)
-        .set('x-site-id', TestData.createdSite.id)
+        .set('x-site-uuid', TestData.createdSite.uuid)
         .expect(200);
 
       // Проверяем, что действительно удален
@@ -17,7 +17,7 @@ export default function (TestData) {
         .get('/page?id=' + TestData.createdPage.id)
         .set('Authorization', `Bearer ${TestData.authToken}`)
         .set('Origin', `${TestData.origin}`)
-        .set('x-site-id', TestData.createdSite.id)
+        .set('x-site-uuid', TestData.createdSite.uuid)
         .expect(404);
     });
 
@@ -26,7 +26,7 @@ export default function (TestData) {
         .get('/page?id=' + TestData.createdPage.id)
         .set('Authorization', `Bearer ${TestData.authToken}`)
         .set('Origin', `${TestData.origin}`)
-        .set('x-site-id', TestData.createdSite.id)
+        .set('x-site-uuid', TestData.createdSite.uuid)
         .expect(404);
     });
   }

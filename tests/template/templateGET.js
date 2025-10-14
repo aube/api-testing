@@ -11,7 +11,7 @@ export default function templateGET(TestData) {
         .get(`/template/${TestData.createdTemplate.id}`)
         .set('Authorization', `Bearer ${TestData.authToken}`)
         .set('Origin', `${TestData.origin}`)
-        .set('x-site-id', TestData.createdSite.id)
+        .set('x-site-uuid', TestData.createdSite.uuid)
         .expect(200);
 
       expect(response.body).toHaveProperty('id');
@@ -24,7 +24,7 @@ export default function templateGET(TestData) {
         .get(`/template/unformat`)
         .set('Authorization', `Bearer ${TestData.authToken}`)
         .set('Origin', `${TestData.origin}`)
-        .set('x-site-id', TestData.createdSite.id)
+        .set('x-site-uuid', TestData.createdSite.uuid)
         .expect(401);
     });
 
@@ -32,7 +32,7 @@ export default function templateGET(TestData) {
       await request(API_BASE_URL)
         .get(`/template/${TestData.createdTemplate.id}`)
         .set('Origin', `${TestData.origin}`)
-        .set('x-site-id', TestData.createdSite.id)
+        .set('x-site-uuid', TestData.createdSite.uuid)
         .expect(401);
     });
 
@@ -41,7 +41,7 @@ export default function templateGET(TestData) {
         .get(`/template/${TestData.createdTemplate.id + 1000}`)
         .set('Authorization', `Bearer ${TestData.authToken}`)
         .set('Origin', `${TestData.origin}`)
-        .set('x-site-id', TestData.createdSite.id)
+        .set('x-site-uuid', TestData.createdSite.uuid)
         .expect(404);
     });
   };

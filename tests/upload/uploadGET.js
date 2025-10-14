@@ -9,7 +9,7 @@ export default function (TestData) {
         .get(`/upload?uuid=${TestData.uploadedFile.uuid}`)
         .set('Authorization', `Bearer ${TestData.authToken}`)
         .set('Origin', `${TestData.origin}`)
-        .set('x-site-id', `${TestData.createdSite.id}`)
+        .set('x-site-uuid', `${TestData.createdSite.uuid}`)
         .expect(200)
         .expect('Content-Type', TestData.uploadedFile.content_type);
 
@@ -21,7 +21,7 @@ export default function (TestData) {
         .get(`/upload?name=${TestData.FILENAME}`)
         .set('Authorization', `Bearer ${TestData.authToken}`)
         .set('Origin', `${TestData.origin}`)
-        .set('x-site-id', `${TestData.createdSite.id}`)
+        .set('x-site-uuid', `${TestData.createdSite.uuid}`)
         .expect(200)
         .expect('Content-Type', TestData.uploadedFile.content_type);
 
@@ -33,7 +33,7 @@ export default function (TestData) {
         .get(`/upload?uuid=${TestData.FAKE_UUID}`)
         .set('Authorization', `Bearer ${TestData.authToken}`)
         .set('Origin', `${TestData.origin}`)
-        .set('x-site-id', `${TestData.createdSite.id}`)
+        .set('x-site-uuid', `${TestData.createdSite.uuid}`)
         .expect(404);
     });
 
@@ -42,7 +42,7 @@ export default function (TestData) {
         .get('/upload')
         .set('Authorization', `Bearer ${TestData.authToken}`)
         .set('Origin', `${TestData.origin}`)
-        .set('x-site-id', `${TestData.createdSite.id}`)
+        .set('x-site-uuid', `${TestData.createdSite.uuid}`)
         .expect(400);
     });
   }

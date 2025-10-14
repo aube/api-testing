@@ -21,7 +21,7 @@ export default function (TestData) {
         .post('/page')
         .set('Authorization', `Bearer ${TestData.authToken}`)
         .set('Origin', `${TestData.origin}`)
-        .set('x-site-id', TestData.createdSite.id)
+        .set('x-site-uuid', TestData.createdSite.uuid)
         .send(grandParentPageData)
         .expect(201);
 
@@ -39,7 +39,7 @@ export default function (TestData) {
         .post('/page')
         .set('Authorization', `Bearer ${TestData.authToken}`)
         .set('Origin', `${TestData.origin}`)
-        .set('x-site-id', TestData.createdSite.id)
+        .set('x-site-uuid', TestData.createdSite.uuid)
         .send(parentPageData)
         .expect(201);
 
@@ -56,7 +56,7 @@ export default function (TestData) {
         .put('/page')
         .set('Authorization', `Bearer ${TestData.authToken}`)
         .set('Origin', `${TestData.origin}`)
-        .set('x-site-id', TestData.createdSite.id)
+        .set('x-site-uuid', TestData.createdSite.uuid)
         .send(updatedPageData)
         .expect(200);
 
@@ -68,14 +68,14 @@ export default function (TestData) {
         .delete('/page?id=' + parentPage.id)
         .set('Authorization', `Bearer ${TestData.authToken}`)
         .set('Origin', `${TestData.origin}`)
-        .set('x-site-id', TestData.createdSite.id)
+        .set('x-site-uuid', TestData.createdSite.uuid)
         .expect(200);
 
       await request(API_BASE_URL)
         .delete('/page?id=' + grandParentPage.id)
         .set('Authorization', `Bearer ${TestData.authToken}`)
         .set('Origin', `${TestData.origin}`)
-        .set('x-site-id', TestData.createdSite.id)
+        .set('x-site-uuid', TestData.createdSite.uuid)
         .expect(200);
     })
 
@@ -86,7 +86,7 @@ export default function (TestData) {
         .get(`/page/ancestors?id=${TestData.createdPage.id}`)
         .set('Authorization', `Bearer ${TestData.authToken}`)
         .set('Origin', `${TestData.origin}`)
-        .set('x-site-id', TestData.createdSite.id)
+        .set('x-site-uuid', TestData.createdSite.uuid)
         .expect(200);
 
       // Should return an array with the parent and grandparent
@@ -105,7 +105,7 @@ export default function (TestData) {
         .post('/page')
         .set('Authorization', `Bearer ${TestData.authToken}`)
         .set('Origin', `${TestData.origin}`)
-        .set('x-site-id', `${TestData.createdSite.id}`)
+        .set('x-site-uuid', `${TestData.createdSite.uuid}`)
         .send({
           ...TestData.DEFAULT_PAGE,
           name: TestData.DEFAULT_PAGE + "_anc",
@@ -119,7 +119,7 @@ export default function (TestData) {
         .get(`/page/ancestors?id=${rootPage.id}`)
         .set('Authorization', `Bearer ${TestData.authToken}`)
         .set('Origin', `${TestData.origin}`)
-        .set('x-site-id', TestData.createdSite.id)
+        .set('x-site-uuid', TestData.createdSite.uuid)
         .expect(200);
 
       expect(Array.isArray(response.body)).toBe(true);
@@ -131,7 +131,7 @@ export default function (TestData) {
         .get('/page/ancestors')
         .set('Authorization', `Bearer ${TestData.authToken}`)
         .set('Origin', `${TestData.origin}`)
-        .set('x-site-id', TestData.createdSite.id)
+        .set('x-site-uuid', TestData.createdSite.uuid)
         .expect(400);
     });
 
@@ -140,7 +140,7 @@ export default function (TestData) {
         .get(`/page/ancestors?id=${TestData.createdPage.id + 1000}`)
         .set('Authorization', `Bearer ${TestData.authToken}`)
         .set('Origin', `${TestData.origin}`)
-        .set('x-site-id', TestData.createdSite.id)
+        .set('x-site-uuid', TestData.createdSite.uuid)
         .expect(400);
     });
   }
