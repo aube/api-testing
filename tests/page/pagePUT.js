@@ -30,18 +30,21 @@ export default function (TestData) {
     it('should update page and return updated page data', async () => {
       const pageData = {
         ...updatedPage,
-        name: TestData.FAKE_NAME + '_2',
+        // Names doenst updated now:
+        // name: TestData.FAKE_NAME + '_2',
         meta: "meta_2",
         title: "title_2",
-        category: "category_2",
         template: "template_2",
-        h1: "h1_2",
-        content: "content_2",
+        tags: "tags_2",
+        header: "header_2",
         template_anons: "template_anons_2",
         icon: "icon_2",
         menu: "menu_2",
-        image_id: 8,
-        anons: "anons_2",
+        img: '8_888',
+        data: "content_2",
+        data_anons: "anons_2",
+        html: "html_2",
+        html_anons: "html_anons_2",
       }
 
       const response = await request(API_BASE_URL)
@@ -83,7 +86,21 @@ export default function (TestData) {
         .expect(400);
     });
 
-    it('should return 400 when page same name used in other page', async () => {
+    // Skiped becase page names doenst editable now
+    it.skip('should return 400 when page same name used in other page', async () => {
+      let newPageName = TestData.DEFAULT_PAGE.name + '_2page'
+
+      await request(API_BASE_URL)
+        .post('/page')
+        .set('Authorization', `Bearer ${TestData.authToken}`)
+        .set('Origin', `${TestData.origin}`)
+        .set('x-site-uuid', `${TestData.createdSite.uuid}`)
+        .send({
+          ...TestData.DEFAULT_PAGE,
+          name: newPageName,
+        })
+        .expect(201);
+
       await request(API_BASE_URL)
         .put('/page')
         .set('Authorization', `Bearer ${TestData.authToken}`)
@@ -91,7 +108,7 @@ export default function (TestData) {
         .set('x-site-uuid', TestData.createdSite.uuid)
         .send({
           ...updatedPage,
-          name: TestData.DEFAULT_PAGE.name,
+          name: newPageName,
         })
         .expect(400);
     });

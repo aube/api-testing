@@ -11,19 +11,11 @@ export default function (TestData) {
         .set('Origin', `${TestData.origin}`)
         .set('x-site-uuid', TestData.createdSite.uuid)
         .expect(200);
-
-      // Проверяем, что действительно удален
-      await request(API_BASE_URL)
-        .get('/page?id=' + TestData.createdPage.id)
-        .set('Authorization', `Bearer ${TestData.authToken}`)
-        .set('Origin', `${TestData.origin}`)
-        .set('x-site-uuid', TestData.createdSite.uuid)
-        .expect(404);
     });
 
     it('should return 404 if page not found', async () => {
       await request(API_BASE_URL)
-        .get('/page?id=' + TestData.createdPage.id)
+        .get('/page/' + TestData.createdPage.id)
         .set('Authorization', `Bearer ${TestData.authToken}`)
         .set('Origin', `${TestData.origin}`)
         .set('x-site-uuid', TestData.createdSite.uuid)
