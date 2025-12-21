@@ -7,7 +7,7 @@ export default function (TestData) {
 
     it('should return list of uploaded images', async () => {
       const response = await request(API_BASE_URL)
-        .get('/images')
+        .get('/images?category=' + TestData.uploadedImage.category)
         .set('Authorization', `Bearer ${TestData.authToken}`)
         .set('Origin', `${TestData.origin}`)
         .set('x-site-uuid', `${TestData.createdSite.uuid}`)
